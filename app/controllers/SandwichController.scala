@@ -1,11 +1,14 @@
 package controllers
 
+import com.google.inject.Inject
 import play.api.mvc.{Action, Controller}
+import services.SandwichService
 
-class SandwichController extends Controller {
+class SandwichController @Inject()(sandwichService : SandwichService) extends Controller {
 
   def sandwiches() = Action {
-    Ok(views.html.sandwiches())
+    val sandwiches = sandwichService.sandwiches
+    Ok(views.html.sandwiches(sandwiches))
   }
 
 }
