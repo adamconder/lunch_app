@@ -6,7 +6,7 @@ import org.scalatestplus.play._
 import org.scalatestplus.play.guice.GuiceOneAppPerTest
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{status, _}
-import services.{CalendarService, ConcreteGreetingService, GreetingService}
+import services.{CalendarService, ConcreteGreetingService}
 
 object FakeCalendarService extends CalendarService {
   val formatter : DateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")
@@ -17,18 +17,6 @@ object MorningCalendarService extends CalendarService {
   val formatter : DateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")
   override def today: DateTime = DateTime.parse("2017-10-12 11:52:21", formatter)
 }
-
-//object FakeGreetingService extends GreetingService {
-//  override def greeting: String = "Good morning!"
-//
-//  override val calendarService: CalendarService = FakeCalendarService
-//}
-//
-//object FakeAfternoonGreetingService extends GreetingService {
-//  override def greeting: String = "Good afternoon!"
-//
-//  override val calendarService: CalendarService = FakeCalendarService
-//}
 
 class WelcomeControllerSpec extends PlaySpec with GuiceOneAppPerTest {
 
